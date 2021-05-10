@@ -7,9 +7,10 @@ from tqdm import tqdm
 def main():
     # load log data
     parser = argparse.ArgumentParser(description='Export tensorboard data')
-    parser.add_argument('--in-path', type=str, required=True, help='Tensorboard event files or a single tensorboard '
-                                                                   'file location')
-    parser.add_argument('--ex-path', type=str, required=True, help='location to save the exported data')
+    parser.add_argument('--in-path', type=str, required=False, help='Tensorboard event files or a single tensorboard '
+                                                                    'file location', default=".")
+    parser.add_argument('--ex-path', type=str, required=False, help='location to save the exported data',
+                        default="out.csv")
 
     args = parser.parse_args()
     event_data = event_accumulator.EventAccumulator(args.in_path)  # a python interface for loading Event data
@@ -17,12 +18,14 @@ def main():
     # print(event_data.Tags())  # print all tags
     keys = event_data.scalars.Keys()  # get all tags,save in a list
     # print(keys)
-    df = pd.DataFrame(columns=keys[1:])  # my first column is training loss per iteration, so I abandon it
+    #这里也可以选择想要的keys
+    df = pd.DataFrame(columns=keys)
     for key in tqdm(keys):
         # print(key)
-        if key != 'train/total_loss_iter':  # Other attributes' timestamp is epoch.Ignore it for the format of csv file
-            df[key] = pd.DataFrame(event_data.Scalars(key)).value
-
+        # 可以写你筛选的类，这里我全都要所以注释掉下面
+        # if key != 'train/total_loss_iter':
+        #     df[key] = pd.DataFrame(event_data.Scalars(key)).value
+        df[key] = pd.DataFrame(event_data.Scalars(key)).value
     df.to_csv(args.ex_path)
 
     print("Tensorboard data exported successfully")
