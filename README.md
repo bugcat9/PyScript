@@ -29,6 +29,6 @@ eg：
 python exportTensorboard.py --in-path . --ex-path out.csv
 ```
 
-**目前存在的问题：**存在数据没有办法转化
+**目前存在的问题：**存在数据没有办法转化，原因是event当中所有数据不是一样长的在使用`pandas`进行转化时会导致数据丢失
 
 **参考：**https://blog.csdn.net/weixin_40539826/article/details/111083471
