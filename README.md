@@ -3,11 +3,12 @@
 
 
 
-| 文件名              | 说明                                          | 用法                                                         |
-| ------------------- | --------------------------------------------- | ------------------------------------------------------------ |
-| tensorboardToCSV.py | 用来将tensorboard生成的event文件转化为csv文件 | python python文件位置.py --in-path event文件夹路径 --ex-path csv文件夹保存位置 |
-|                     |                                               |                                                              |
-|                     |                                               |                                                              |
+| 文件名              | 说明                                                         | 用法                                                         |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| tensorboardToCSV.py | 用来将tensorboard生成的event文件转化为csv文件                | python python文件位置.py --in-path event文件夹路径 --ex-path csv文件夹保存位置 |
+| ScatterPlot.py      | 将多维数据，使用tsne降维到2维数据，并画出散点图，方便查看聚类的效果 | 需要调用里面的drawScatter函数，具体的图注啥需要自己加        |
+| Confusion_Matrix.py | 画混淆矩阵                                                   | 直接调用plot_confusion_matrix函数                            |
+|                     |                                                              |                                                              |
 
 ### tensorboardToCSV
 
