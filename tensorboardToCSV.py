@@ -17,8 +17,9 @@ def main():
     event_data.Reload()  # synchronously loads all of the data written so far b
     # print(event_data.Tags())  # print all tags
     keys = event_data.scalars.Keys()  # get all tags,save in a list
+    keys = ["Average_mAP", "loss_total"]
     # print(keys)
-    #这里也可以选择想要的keys
+    # 这里也可以选择想要的keys
     df = pd.DataFrame(columns=keys)
     for key in tqdm(keys):
         # print(key)
